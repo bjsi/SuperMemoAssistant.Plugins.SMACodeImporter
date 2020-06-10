@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution files", "_Solution files", "{F2406E93-5C6D-4456-A79F-BD442587CB94}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{05CBB5E5-FFC8-4EDE-82C1-0A9A7466B185}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMemoAssistant.Plugins.SMACodeImporter", "src\SuperMemoAssistant.Plugins.SMACodeImporter\SuperMemoAssistant.Plugins.SMACodeImporter.csproj", "{BA0DC84C-51D6-4696-A546-F5EBA63FDC07}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EC679391-94AC-4C80-A748-BA0D5557BBDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMemoAssistant.Plugins.SMACodeImporter.Tests", "src\SuperMemoAssistant.Plugins.SMACodeImporter.Tests\SuperMemoAssistant.Plugins.SMACodeImporter.Tests.csproj", "{419F7551-3165-4042-AC77-664CD6E28484}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		1. Alpha (Debug)|Any CPU = 1. Alpha (Debug)|Any CPU
+		2. Beta (Release)|Any CPU = 2. Beta (Release)|Any CPU
+		3. Stable (Release)|Any CPU = 3. Stable (Release)|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA0DC84C-51D6-4696-A546-F5EBA63FDC07}.1. Alpha (Debug)|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA0DC84C-51D6-4696-A546-F5EBA63FDC07}.1. Alpha (Debug)|Any CPU.Build.0 = Debug|Any CPU
+		{BA0DC84C-51D6-4696-A546-F5EBA63FDC07}.2. Beta (Release)|Any CPU.ActiveCfg = Release|Any CPU
+		{BA0DC84C-51D6-4696-A546-F5EBA63FDC07}.2. Beta (Release)|Any CPU.Build.0 = Release|Any CPU
+		{BA0DC84C-51D6-4696-A546-F5EBA63FDC07}.3. Stable (Release)|Any CPU.ActiveCfg = Release|Any CPU
+		{BA0DC84C-51D6-4696-A546-F5EBA63FDC07}.3. Stable (Release)|Any CPU.Build.0 = Release|Any CPU
+		{BA0DC84C-51D6-4696-A546-F5EBA63FDC07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA0DC84C-51D6-4696-A546-F5EBA63FDC07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA0DC84C-51D6-4696-A546-F5EBA63FDC07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA0DC84C-51D6-4696-A546-F5EBA63FDC07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{419F7551-3165-4042-AC77-664CD6E28484}.1. Alpha (Debug)|Any CPU.ActiveCfg = Debug|Any CPU
+		{419F7551-3165-4042-AC77-664CD6E28484}.1. Alpha (Debug)|Any CPU.Build.0 = Debug|Any CPU
+		{419F7551-3165-4042-AC77-664CD6E28484}.2. Beta (Release)|Any CPU.ActiveCfg = Release|Any CPU
+		{419F7551-3165-4042-AC77-664CD6E28484}.2. Beta (Release)|Any CPU.Build.0 = Release|Any CPU
+		{419F7551-3165-4042-AC77-664CD6E28484}.3. Stable (Release)|Any CPU.ActiveCfg = Release|Any CPU
+		{419F7551-3165-4042-AC77-664CD6E28484}.3. Stable (Release)|Any CPU.Build.0 = Release|Any CPU
+		{419F7551-3165-4042-AC77-664CD6E28484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{419F7551-3165-4042-AC77-664CD6E28484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{419F7551-3165-4042-AC77-664CD6E28484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{419F7551-3165-4042-AC77-664CD6E28484}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BA0DC84C-51D6-4696-A546-F5EBA63FDC07} = {05CBB5E5-FFC8-4EDE-82C1-0A9A7466B185}
+		{419F7551-3165-4042-AC77-664CD6E28484} = {EC679391-94AC-4C80-A748-BA0D5557BBDD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D956103B-1AA9-45A1-932D-93D9ED4C61A6}
+	EndGlobalSection
+EndGlobal
