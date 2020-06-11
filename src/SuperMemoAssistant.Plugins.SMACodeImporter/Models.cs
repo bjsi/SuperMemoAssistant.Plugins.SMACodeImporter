@@ -21,6 +21,14 @@ namespace SuperMemoAssistant.Plugins.SMACodeImporter
     public string project { get; set; }
 
     [IgnoreDataMember]
+    public string highlightedCode { 
+      get
+      {
+        return "<pre>" + CodeHighlighter.Highlight(selectedCode, language.ToLower()) + "</pre>";
+      }
+    }
+
+    [IgnoreDataMember]
     public string database { get; set; }
 
     [IgnoreDataMember]

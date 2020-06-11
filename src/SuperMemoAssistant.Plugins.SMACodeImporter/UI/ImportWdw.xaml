@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:SuperMemoAssistant.Plugins.SMACodeImporter.UI"
         mc:Ignorable="d"
         Title="SMA Code Importer"
-        Height="400"
-        Width="600">
+        Height="600"
+        Width="800">
   <Window.Resources>
     <local:Extracts x:Key="extracts" />
     <CollectionViewSource x:Key="cvsExtracts"
@@ -111,16 +111,12 @@
         
         <!-- Code Column -->
         <DataGridTemplateColumn Header="Code"
-                            MaxWidth="300"
-                            Width="300">
+                            MaxWidth="500"
+                            Width="500">
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
-              <TextBlock Text="{Binding selectedCode}"
-                         TextWrapping="Wrap"
-                         Foreground="Black"
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center"
-                         Margin="5"/>
+              <WebBrowser local:BrowserBehavior.Html="{Binding highlightedCode}">
+              </WebBrowser>
             </DataTemplate>
           </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>

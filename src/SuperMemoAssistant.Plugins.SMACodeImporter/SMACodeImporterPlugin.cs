@@ -240,52 +240,7 @@ namespace SuperMemoAssistant.Plugins.SMACodeImporter
 
       bool ret = false;
       var contents = new List<ContentBase>();
-
-      // Code Selection
-      string code = extract.selectedCode;
-      var highlighter = new Highlighter(new MyHtmlEngine());
-      string lang = extract.language.ToLower();
-      string highlightLangCode = string.Empty;
-
-      if (lang == "csharp")
-      {
-        highlightLangCode = "C#";
-      }
-      else if (lang == "haskell")
-      {
-        highlightLangCode = "Haskell";
-      }
-      else if (lang == "python")
-      {
-        highlightLangCode = "Python";
-      }
-      else if (lang == "javascript")
-      {
-        highlightLangCode = "JavaScript";
-      }
-      else if (lang == "c")
-      {
-        highlightLangCode = "C";
-      }
-      else if (lang == "c++" || lang == "c/c++")
-      {
-        highlightLangCode = "C++";
-      }
-      else
-      {
-        LogTo.Debug($"Unrecognized language {lang}");
-      }
-
-      string html = string.Empty;
-      if (!string.IsNullOrEmpty(highlightLangCode))
-      {
-        html = highlighter.Highlight(highlightLangCode, code);
-      }
-      else
-      {
-        html = code;
-      }
-
+      string html = extract.highlightedCode;
       string comment = extract.comment;
       string combined = $"<pre>{html}</pre><BR><BR>{comment}<BR>";
       contents.Add(new TextContent(true, combined));
