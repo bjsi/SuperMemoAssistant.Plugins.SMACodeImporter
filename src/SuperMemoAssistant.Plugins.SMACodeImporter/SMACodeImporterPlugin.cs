@@ -37,15 +37,21 @@ namespace SuperMemoAssistant.Plugins.SMACodeImporter
   using System.IO;
   using System.Linq;
   using System.Threading.Tasks;
+  using System.Windows;
+  using System.Windows.Input;
   using Anotar.Serilog;
   using Highlight;
+  using SuperMemoAssistant.Extensions;
   using SuperMemoAssistant.Interop.SuperMemo.Content.Contents;
   using SuperMemoAssistant.Interop.SuperMemo.Elements.Builders;
   using SuperMemoAssistant.Interop.SuperMemo.Elements.Models;
+  using SuperMemoAssistant.Plugins.SMACodeImporter.UI;
   using SuperMemoAssistant.Services;
   using SuperMemoAssistant.Services.IO.HotKeys;
+  using SuperMemoAssistant.Services.IO.Keyboard;
   using SuperMemoAssistant.Services.Sentry;
   using SuperMemoAssistant.Services.UI.Configuration;
+  using SuperMemoAssistant.Sys.IO.Devices;
 
   // ReSharper disable once UnusedMember.Global
   // ReSharper disable once ClassNeverInstantiated.Global
@@ -87,6 +93,51 @@ namespace SuperMemoAssistant.Plugins.SMACodeImporter
     {
       LoadConfig();
       SetupDatabaseWatchers();
+      Svc.HotKeyManager
+   .RegisterGlobal(
+     "OpenCodeImporter",
+     "Open SMA Code Importer Window",
+     HotKeyScopes.SMBrowser,
+     new HotKey(Key.S, KeyModifiers.CtrlAltShift),
+     OpenImportWdw
+   );
+
+    }
+
+    private async void OpenImportWdw()
+    {
+
+      var outstandingExtracts = new List<Extract>();
+      List<string> databases = Config.Databases.Split(',').Select(x => x.Trim()).ToList();
+      if (databases == null || databases.Count == 0)
+      {
+        LogTo.Warning("Failed to OpenImportWdw because there are no databases in the config");
+        return;
+      }
+
+      foreach (var database in databases)
+      {
+        if (!File.Exists(database))
+        {
+          LogTo.Warning($"Failed to add extracts from db {database} to import wdw because db does not exist");
+          continue;
+        }
+
+        var db = new DataAccess(database);
+        var results = await db.GetOutstandingExtractsAsync();
+        if (results != null && results.Count > 0)
+        {
+          results.ForEach(x => x.database = database);
+          outstandingExtracts.AddRange(results);
+        }
+      }
+
+      Application.Current.Dispatcher.Invoke(() =>
+      {
+        var wdw = new ImportWdw(outstandingExtracts);
+        wdw.ShowAndActivate();
+      });
+
     }
 
     /// <summary>
@@ -163,7 +214,7 @@ namespace SuperMemoAssistant.Plugins.SMACodeImporter
       await CreateSMExtract(extract, database);
     }
 
-    private async Task CreateSMExtract(Extract extract, string database)
+    public async Task CreateSMExtract(Extract extract, string database)
     {
       if (extract == null || !extract.IsValid())
       {

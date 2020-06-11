@@ -1,0 +1,168 @@
+﻿<Window x:Class="SuperMemoAssistant.Plugins.SMACodeImporter.UI.ImportWdw"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SuperMemoAssistant.Plugins.SMACodeImporter.UI"
+        mc:Ignorable="d"
+        Title="SMA Code Importer"
+        Height="400"
+        Width="600">
+  <Window.Resources>
+    <local:Extracts x:Key="extracts" />
+    <CollectionViewSource x:Key="cvsExtracts"
+                          Source="{StaticResource extracts}"
+                          Filter="CollectionViewSource_Filter">
+      <CollectionViewSource.GroupDescriptions>
+        <PropertyGroupDescription PropertyName="language"/>
+        <PropertyGroupDescription PropertyName="project"/>
+      </CollectionViewSource.GroupDescriptions>
+    </CollectionViewSource>
+  </Window.Resources>
+    <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition></RowDefinition>
+      <RowDefinition Height="30"></RowDefinition>
+    </Grid.RowDefinitions>
+    <DataGrid AutoGenerateColumns="False"
+              Margin="5"
+              ItemsSource="{Binding Source={StaticResource cvsExtracts}}"
+              CanUserAddRows="False"
+              Name="DG1">
+      <DataGrid.GroupStyle>
+        <!-- Style for groups at top level. -->
+        <GroupStyle>
+          <GroupStyle.ContainerStyle>
+            <Style TargetType="{x:Type GroupItem}">
+              <Setter Property="Margin" Value="0,0,0,5"/>
+              <Setter Property="Template">
+                <Setter.Value>
+                  <ControlTemplate TargetType="{x:Type GroupItem}">
+                    <Expander IsExpanded="True" Background="#FF112255" BorderBrush="#FF002255" Foreground="#FFEEEEEE" BorderThickness="1,1,1,5">
+                      <Expander.Header>
+                        <DockPanel>
+                          <TextBlock Text="Language:" Margin="3" FontWeight="Bold"></TextBlock>
+                          <TextBlock FontWeight="Bold" Text="{Binding Path=Name}" Margin="3" Width="100"/>
+                          <TextBlock Text="Language:" Margin="3" FontWeight="Bold"></TextBlock>
+                          <TextBlock FontWeight="Bold" Margin="3" Text="{Binding Path=ItemCount}"/>
+                        </DockPanel>
+                      </Expander.Header>
+                      <Expander.Content>
+                        <ItemsPresenter />
+                      </Expander.Content>
+                    </Expander>
+                  </ControlTemplate>
+                </Setter.Value>
+              </Setter>
+            </Style>
+          </GroupStyle.ContainerStyle>
+        </GroupStyle>
+        <!-- Style for groups under the top level. -->
+        <GroupStyle>
+          <GroupStyle.HeaderTemplate>
+            <DataTemplate>
+              <DockPanel Background="LightBlue">
+                <TextBlock Text="Project:"
+                           FontWeight="Bold"
+                           Margin="3">
+                </TextBlock>
+                <TextBlock Text="{Binding Path=Name}"
+                           Foreground="Blue"
+                           Margin="3"/>
+                <TextBlock Text="Count:"
+                           FontWeight="Bold"
+                           Margin="3">
+                </TextBlock>
+                <TextBlock Text="{Binding Path=ItemCount}"
+                           Foreground="Blue"
+                           Margin="3"/>
+              </DockPanel>
+            </DataTemplate>
+          </GroupStyle.HeaderTemplate>
+        </GroupStyle>
+      </DataGrid.GroupStyle>
+      <DataGrid.Columns>
+        
+        <!-- Import Column -->
+        <DataGridTemplateColumn Header="Import?">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <CheckBox IsChecked="{Binding ToImport, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center">
+              </CheckBox>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        
+        
+        <!-- Timestamp Column -->
+        <DataGridTemplateColumn Header="Timestamp">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding timestamp}"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Foreground="Black">
+              </TextBlock>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        
+        <!-- Code Column -->
+        <DataGridTemplateColumn Header="Code"
+                            MaxWidth="300"
+                            Width="300">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding selectedCode}"
+                         TextWrapping="Wrap"
+                         Foreground="Black"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Margin="5"/>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+
+        <!-- Comment Column -->
+        <DataGridTemplateColumn Header="Comment">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding comment}"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextWrapping="Wrap"
+                         MaxWidth="150"
+                         Width="150"
+                         Foreground="Black"
+                         Margin="5">
+              </TextBlock>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        
+        <!-- Priority Column -->
+        <DataGridTemplateColumn Header="Priority">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding priority}"
+                                       Foreground="Black"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center">
+              </TextBlock>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+      </DataGrid.Columns>
+    </DataGrid>
+    <Button Grid.Row="1"
+            HorizontalAlignment="Right"
+            Content=" IMPORT "
+            Margin="5" Click="Button_Click_1"/>
+    <Button Grid.Row="1"
+            HorizontalAlignment="Left"
+            Content=" CANCEL "
+            Margin="5" Click="Button_Click"/>
+  </Grid>
+</Window>
