@@ -43,7 +43,7 @@ namespace SuperMemoAssistant.Plugins.SMACodeImporter
         if (value != this._ToImport)
         {
           this._ToImport = value;
-          NotifyPropertyChanged("ProjectName");
+          NotifyPropertyChanged("ToImport");
         }
       }
     }

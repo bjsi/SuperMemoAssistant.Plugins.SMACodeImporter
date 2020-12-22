@@ -95,7 +95,6 @@
           </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
         
-        
         <!-- Timestamp Column -->
         <DataGridTemplateColumn Header="Timestamp">
           <DataGridTemplateColumn.CellTemplate>
